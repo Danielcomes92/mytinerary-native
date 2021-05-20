@@ -1,23 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
+import 'react-native-gesture-handler';
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Menu from './src/components/Menu'
+
+import {NavigationContainer} from '@react-navigation/native';
+import Bottom from './navigation/Bottom'
+import { Text, StyleSheet, View } from 'react-native';
 
 export default function App() {
   return (
-    <>
-        <SafeAreaView style={styles.container}>
-
-            <Menu />        
-        </SafeAreaView>
+    <>  
+  
+      <NavigationContainer>
+        <Bottom />
+      </NavigationContainer>
+  
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 2,
-    backgroundColor: 'gray'
-  }
-
+  
 });
+
+
