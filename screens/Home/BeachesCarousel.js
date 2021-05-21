@@ -1,24 +1,24 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
 import ItemBeachesCarousel from './ItemBeachesCarousel'
 
 const BeachesCarousel = () => {
 
     const data = [
         {
-            city: 'Rio de Janeiro', url: 'https://imgur.com/jTVSbwS'
+            city: 'Rio de Janeiro', url: 'https://i.imgur.com/jTVSbwS.jpg'
         },
         {
-            city: 'Miami', url: 'https://imgur.com/CxdEMsr'
+            city: 'Miami', url: 'https://i.imgur.com/CxdEMsr.jpg'
         },
         {
-            city: 'Tossa Codolar', url: 'https://imgur.com/QBFx83c'
+            city: 'Tossa Codolar', url: 'https://i.imgur.com/QBFx83c.jpg'
         },
         {
-            city: 'Hvar', url: 'https://imgur.com/mVHre1H'
+            city: 'Hvar', url: 'https://i.imgur.com/mVHre1H.jpg'
         },
         {
-            city: 'Buzios', url: 'https://imgur.com/BTmrEkV'
+            city: 'Buzios', url: 'https://i.imgur.com/BTmrEkV.jpg'
         }
     ]
 
@@ -29,13 +29,13 @@ const BeachesCarousel = () => {
                 <Text style={styles.text}>The better options for people who appreciate the beach</Text>
             </View>
             {/* each image */}
-            <View style={styles.imagesContainer}>
+            <ScrollView horizontal={true} style={styles.imagesContainer}>
                 {
                     data.map((city, index) => {
                         return <ItemBeachesCarousel key={index} city={city} />
                     })
                 }
-            </View>
+            </ScrollView>
             
         </View>
     )
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
         padding: 24
     },
     imagesContainer: {
+        width: '100%',
         height: 200,
-        backgroundColor: 'white',
         margin: 24,
         marginTop: 0
     },
