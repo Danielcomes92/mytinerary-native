@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     title: {
         fontWeight: 'bold',
         fontSize: 32,
+        color: '#000130'
     },
     heroBg: {
         width: '100%',

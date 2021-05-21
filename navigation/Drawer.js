@@ -1,14 +1,17 @@
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
+import { HomeStack } from './Stack'
 
-const drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
-const Drawer = () => {
+const MyDrawer = (props) => {
     return(
-        <drawer.Navigator>
-            <drawer.Screen />
-        </drawer.Navigator>
+        <>
+            <Drawer.Navigator>
+                <Drawer.Screen name='home' component={ HomeStack } />
+            </Drawer.Navigator>
+        </>
     )
 }
 
-export default Drawer;
+export default MyDrawer;

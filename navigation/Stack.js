@@ -1,15 +1,13 @@
-import React from 'react'
 import {createStackNavigator} from '@react-navigation/stack'
+import React from 'react'
 import Home from '../screens/Home/Home'
 
-const stack = createStackNavigator()
+const Stack = createStackNavigator()
 
-const Stack = () => {
+export const HomeStack = () => {
     return (    
-        <stack.Navigator>
-            <stack.Screen name='home' component={Home} />
-        </stack.Navigator>
+        <Stack.Navigator>
+            <Stack.Screen name='home' component={Home} />
+        </Stack.Navigator>
     )
 }
-
-export default Stack;
