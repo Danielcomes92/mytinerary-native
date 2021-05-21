@@ -1,8 +1,12 @@
 import React from 'react'
 import { View, Text, ImageBackground, StyleSheet, ScrollView} from 'react-native';
 import Header from '../Header';
-import BeachesCarousel from './BeachesCarousel';
+
 import Hero from './Hero';
+import BeachesCarousel from './BeachesCarousel';
+import BecameMember from './BecameMember';
+
+
 
 const Home = (props) => {
     return (
@@ -11,6 +15,7 @@ const Home = (props) => {
         <ScrollView style={styles.bgBodyColor}>
             <Hero />
             <BeachesCarousel />
+            <BecameMember />
         </ScrollView>
         </>
     )

@@ -43,16 +43,18 @@ const BeachesCarousel = () => {
 
 const styles = StyleSheet.create({
     container: {
-        minHeight: 300
+        width: '100%',
+        alignItems: 'center',
+        marginTop: 10
     },
     textContainer: {
-        padding: 24
+        width: '90%',
+        marginTop: 10,
+        marginBottom: 8
     },
     imagesContainer: {
-        width: '100%',
-        height: 200,
-        margin: 24,
-        marginTop: 0
+        width: '90%',
+        height: 200
     },
     title: {
         fontSize: 26,
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     text: {
-        color: 'white'
+        color: '#EEEEEE'
     }
 })
 

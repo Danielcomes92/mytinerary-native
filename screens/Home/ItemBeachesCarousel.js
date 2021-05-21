@@ -26,9 +26,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     container: {
-        width: 250,
+        width: 275,
         height: 175,
-        marginRight: 10
+        marginRight: 10,
+        overflow: 'hidden',
+        borderRadius: 5
     },
     texto: {
         color: 'white',
