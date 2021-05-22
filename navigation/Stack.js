@@ -3,6 +3,7 @@ import React from 'react'
 
 import Home from '../screens/Home/Home'
 import Cities from '../screens/Cities/Cities'
+import City from '../screens/Cities/City'
 
 const Stack = createStackNavigator()
 
@@ -22,6 +23,7 @@ export const CitiesStack = () => {
             <Stack.Screen name='cities' component={Cities} options={{
                 title: 'Cities'
             }} />
+            <Stack.Screen name='city' component={City}/>
         </Stack.Navigator>
     )
 }

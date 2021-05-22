@@ -1,7 +1,11 @@
 import React from 'react'
 import { ImageBackground, Text, View, StyleSheet } from 'react-native';
 
-const CardCity = ({city}) => {
+import { useNavigation } from '@react-navigation/native'
+
+const CardCity = (props) => {
+    const navigation = useNavigation();
+    const { city } = props
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -15,7 +19,7 @@ const CardCity = ({city}) => {
                 <Text style={styles.text}>{city.country}</Text>
                 <View style={styles.footerCard}>
                     <Text style={styles.text}>#Travel #{city.continent}</Text>
-                    <Text style={styles.btn}>Visit now</Text>
+                    <Text style={styles.btn} onPress={ () => navigation.navigate('city', {id: city._id}) }>Visit now</Text>
                 </View>
             </View>
             

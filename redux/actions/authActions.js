@@ -1,9 +1,5 @@
 import axios from "axios";
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
-toast.configure()
-
 const authActions = {
     newUser: (newUser) => {
         return async (dispatch, getState) => {
@@ -19,10 +15,10 @@ const authActions = {
                         type: 'ACCESS_USER',
                         payload: response.data.response
                     })
-                    toast.success("You've been registered!", {position: toast.POSITION.TOP_RIGHT})
+                    alert("You've been registered!")
                 }
             } catch {
-                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
+                alert("Internal database error, try in a moment")
             }
         }
     },
@@ -39,10 +35,10 @@ const authActions = {
                     })                
                 } else {
                     //aca va a venir el error de pass o mail incorrect // o database error
-                    toast.error(response.data.error, {position: toast.POSITION.TOP_RIGHT})
+                    alert(response.data.error)
                 }
             } catch {
-                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
+                alert("Internal database error, try in a moment")
             }
         }
     },
@@ -71,7 +67,7 @@ const authActions = {
                     }
                 })
             } catch {
-                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
+                alert("Internal database error, try in a moment")
             }
         }
     }

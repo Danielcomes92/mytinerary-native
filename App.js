@@ -8,6 +8,7 @@ import mainReducer from './redux/reducer/mainReducer';
 
 import {NavigationContainer} from '@react-navigation/native';
 import Drawer from './navigation/Drawer';
+import { StatusBar } from 'react-native';
 
 const myStore = createStore(mainReducer, applyMiddleware(thunk))
 

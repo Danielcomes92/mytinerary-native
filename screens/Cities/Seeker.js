@@ -13,7 +13,6 @@ const Seeker = (props) => {
                 onChangeText={ (e) => props.filterCities(e)}
                 placeholderTextColor={'gray'}
             >
-
             </TextInput>
         </View>
     )

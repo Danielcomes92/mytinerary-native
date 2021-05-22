@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
-toast.configure()
-
 const itinerariesActions = {
 
     getCityItineraries: (cityId) => {
@@ -38,7 +34,7 @@ const itinerariesActions = {
                 })
                 return response
             } catch {
-                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
+                alert("Internal database error, try in a moment")
             }
         }
     },
@@ -53,7 +49,7 @@ const itinerariesActions = {
                 })
                 return response
             } catch {
-                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
+                alert("Internal database error, try in a moment")
             }
         }
     },
@@ -68,7 +64,7 @@ const itinerariesActions = {
                 })
                 return response
             } catch {
-                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
+                alert("Internal database error, try in a moment")
             }
         }
     },
@@ -83,7 +79,7 @@ const itinerariesActions = {
                 })
                 return response
             } catch {
-                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
+                alert("Internal database error, try in a moment")
             }
         }
     },
@@ -98,7 +94,7 @@ const itinerariesActions = {
                 })
                 return response
             } catch {
-                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
+                alert("Internal database error, try in a moment")
             }
         }
     }
