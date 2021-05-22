@@ -17,10 +17,11 @@ const MyDrawer = (props) => {
                     width: '50%'
                 }}
             >
-                <Drawer.Screen name='Home' component={ HomeStack } options={{
+                <Drawer.Screen name='home' component={ HomeStack } options={{
                     drawerIcon: () => ( <Ionicons name="home-sharp" size={24} color={'#000100'}/> )
                 }} />
-                <Drawer.Screen name='Cities' component={ CitiesStack } options={{
+                
+                <Drawer.Screen name='cities' component={ CitiesStack } options={{
                     drawerIcon: () => ( <Ionicons name="location-sharp" size={24} color={'#000100'}/> )
                 }} />
 

@@ -19,7 +19,7 @@ const Header = ({props}) => {
 
 const styles = StyleSheet.create({
     innerNavbar: {
-        width: '93%',
+        width: '95%',
         marginLeft: 'auto',
         marginRight: 'auto',
         flexDirection: 'row',

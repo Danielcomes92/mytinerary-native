@@ -29,7 +29,6 @@ const itinerariesActions = {
     },
 
     handleComments: (comment) => {
-        // console.log(comment)
         return async (dispatch, getState) => {
             try {
                 const response = await axios.post(`https://webapp-mytinerary.herokuapp.com/api/enterComment/${comment.itinerary_id}`, {comment: comment.message}, {

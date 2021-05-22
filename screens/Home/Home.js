@@ -6,8 +6,6 @@ import Hero from './Hero';
 import BeachesCarousel from './BeachesCarousel';
 import BecameMember from './BecameMember';
 
-
-
 const Home = (props) => {
     return (
         <>

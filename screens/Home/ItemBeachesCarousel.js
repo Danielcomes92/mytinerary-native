@@ -2,7 +2,6 @@ import React from 'react'
 import { ImageBackground, View, StyleSheet, Text } from 'react-native'
 
 const ItemBeachesCarousel = ({city}) => {
-    console.log(city.city)
     return (
         <View>
             <View style={styles.container}>

@@ -15,7 +15,6 @@ const Hero = () => {
                     <Text style={[styles.btn, styles.btnExplore]}>Explore</Text>
                 </View>
             </View>
-
         </ImageBackground>
         </>
     )
