@@ -5,6 +5,7 @@ import Header from '../Header';
 import Hero from './Hero';
 import BeachesCarousel from './BeachesCarousel';
 import BecameMember from './BecameMember';
+import Access from '../Auth/Access';
 
 const Home = (props) => {
     return (

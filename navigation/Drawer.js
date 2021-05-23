@@ -1,7 +1,6 @@
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import React from 'react';
-import { HomeStack } from './Stack';
-import { CitiesStack } from './Stack';
+import { AuthStack, HomeStack, CitiesStack } from './Stack';
 import { Ionicons } from '@expo/vector-icons'
 import { Text, View } from 'react-native';
 
@@ -18,13 +17,20 @@ const MyDrawer = (props) => {
                 }}
             >
                 <Drawer.Screen name='home' component={ HomeStack } options={{
-                    drawerIcon: () => ( <Ionicons name="home-sharp" size={24} color={'#000100'}/> )
+                    drawerIcon: () => ( <Ionicons name="home-sharp" size={24} color={'#000100'}/> ),
+                    title: 'Home'
                 }} />
                 
                 <Drawer.Screen name='cities' component={ CitiesStack } options={{
-                    drawerIcon: () => ( <Ionicons name="location-sharp" size={24} color={'#000100'}/> )
+                    drawerIcon: () => ( <Ionicons name="location-sharp" size={24} color={'#000100'}/> ),
+                    title: 'Cities'
                 }} />
 
+                <Drawer.Screen name='access' component={ AuthStack } options={{
+                    drawerIcon: () => ( <Ionicons name="key" size={24} color={'#000100'}/> ),
+                    title: 'Access'
+                }}/>
+                
             </Drawer.Navigator>
         </>
     )

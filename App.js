@@ -1,22 +1,28 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import { StatusBar } from 'react-native';
+
 
 import { applyMiddleware, createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { connect, Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import mainReducer from './redux/reducer/mainReducer';
 
 import {NavigationContainer} from '@react-navigation/native';
 import Drawer from './navigation/Drawer';
-import { StatusBar } from 'react-native';
+
+import mainReducer from './redux/reducer/mainReducer';
+import authActions from './redux/actions/authActions'
+import Access from './screens/Auth/Access';
 
 const myStore = createStore(mainReducer, applyMiddleware(thunk))
 
-export default function App() {
+function App(props) {
+
   return (
     <> 
       <Provider store={myStore}>
         <NavigationContainer>
+            {/* <Access /> */}
             <Drawer />
         </NavigationContainer>
       </Provider>
@@ -24,4 +30,15 @@ export default function App() {
   );
 }
 
+// const mapStateToProps = state => {
+//   return {
+//       userLogged: state.authReducer.userLogged
+//   }
+// }
 
+// const mapDispatchToProps = {
+//     loginWithLS: authActions.loginWithLS
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

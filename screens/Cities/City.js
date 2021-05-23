@@ -72,10 +72,10 @@ const styles = StyleSheet.create({
     upperContainer: {
         width: '90%',
         height: 75,
-        paddingTop: 36,
+        paddingTop: 18,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginVertical: 10,
+        marginVertical: 5,
         padding: 6,
         alignItems: 'center'
     },

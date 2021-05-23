@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from '@expo/vector-icons';
 
 const Header = ({props}) => {
     return (
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     navbar: {
         width: '100%',
         height: 65,
-        backgroundColor: "#000120",
+        backgroundColor: "#000115",
         justifyContent: 'flex-end',
         paddingBottom: 2
     }
