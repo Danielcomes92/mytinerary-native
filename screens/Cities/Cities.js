@@ -10,6 +10,7 @@ import CardNoCity from './CardNoCity';
 import Seeker from './Seeker'
 
 const Cities = (props) => {
+
     useEffect(() => {
         props.getCities()
     }, [])
@@ -42,6 +43,7 @@ const mapStateToProps = state => {
     return {
         citiesUpdated: state.cityReducer.citiesUpdated,
         noCitiesAlert: state.cityReducer.noCitiesAlert,
+        userLogged: state.authReducer.userLogged
     }
 }
 

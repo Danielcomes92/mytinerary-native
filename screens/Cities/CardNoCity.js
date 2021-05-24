@@ -3,7 +3,6 @@ import { View, StyleSheet, ImageBackground, Text } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'; 
 
 const CardNoCity = () => {
-    console.log('hola en card no city')
     return (
         <View style={styles.container}>
             <ImageBackground style={styles.image} source={require('../../assets/nocities.png')}>

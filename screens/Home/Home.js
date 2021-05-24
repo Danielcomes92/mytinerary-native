@@ -1,11 +1,11 @@
 import React from 'react'
-import { View, Text, ImageBackground, StyleSheet, ScrollView} from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import Header from '../Header';
 
 import Hero from './Hero';
 import BeachesCarousel from './BeachesCarousel';
 import BecameMember from './BecameMember';
-import Access from '../Auth/Access';
+import { connect } from 'react-redux';
 
 const Home = (props) => {
     return (
@@ -20,10 +20,21 @@ const Home = (props) => {
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        userLogged: state.authReducer.userLogged
+    }
+}
+
+const mapDispatchToProps = {
+
+}
+
 const styles = StyleSheet.create({
     bgBodyColor: {
         backgroundColor: "#000115"
       }
 })
 
-export default Home;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

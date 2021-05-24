@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 
 const Header = ({props}) => {
+
     return (
         <View style={styles.navbar}>
             <View style={styles.innerNavbar}>
@@ -11,7 +12,15 @@ const Header = ({props}) => {
                     <Ionicons name="menu-outline" size={35} color="white" onPress={ () => props.navigation.openDrawer() } />
                 </View>
                 <View>
-                    <Ionicons name="person-circle-outline" size={35} color="white" />
+                    {
+                        props.userLogged
+                        ? <View>
+                            <ImageBackground style={styles.userImage} source={{
+                                uri: props.userLogged.urlPic
+                            }} />
+                        </View>
+                        : <Ionicons name="person-circle-outline" size={35} color="white" />
+                    }
                 </View>
             </View>
         </View>
@@ -19,6 +28,12 @@ const Header = ({props}) => {
 }
 
 const styles = StyleSheet.create({
+    userImage: {
+        width: 30,
+        height: 30,
+        borderRadius: 30,
+        overflow: 'hidden'
+    },
     innerNavbar: {
         width: '95%',
         marginLeft: 'auto',
@@ -37,7 +52,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
     return {
-
+        userLogged: state.authReducer.userLogged
     }
 }
 

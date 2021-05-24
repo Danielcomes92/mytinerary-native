@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { StatusBar } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 
 import { applyMiddleware, createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -18,14 +18,15 @@ function App() {
   return (
     <> 
       <Provider store={myStore}>
-        <StatusBar
-          animated={true}
-          backgroundColor="#000115"
-          barStyle={"dark-content"}
-        />
-        <NavigationContainer>
-            <Drawer />
-        </NavigationContainer>
+        
+          <StatusBar
+            backgroundColor="#000115"
+            barStyle={"dark-content"}
+          />
+          <NavigationContainer>
+              <Drawer />
+          </NavigationContainer>
+        
       </Provider>
     </>
   );

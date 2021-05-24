@@ -44,7 +44,6 @@ const SignUp = (props) => {
     const sendData = async () => {
 		if(!Object.values(newUser).some(value => value === '')) {
 			const response = await props.newUser(newUser)
-            console.log(response)
 
 			let fields = {
 				firstName: '',
@@ -75,10 +74,6 @@ const SignUp = (props) => {
     function close() {
         pickerRef.current.blur();
     }
-
-    // console.log(props.userLogged)
-    // console.log(newUser)
-    console.log(errors)
 
     return (
         <>  

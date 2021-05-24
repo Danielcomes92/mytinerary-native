@@ -1,12 +1,58 @@
-import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
-import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import React, { useEffect } from 'react';
 import { AuthStack, HomeStack, CitiesStack } from './Stack';
 import { Ionicons } from '@expo/vector-icons'
-import { Text, View } from 'react-native';
+import { connect } from 'react-redux';
+
+import authActions from '../redux/actions/authActions'
 
 const Drawer = createDrawerNavigator();
 
 const MyDrawer = (props) => {
+    const getTokenStoraged = async () => {
+        try {
+            let token = await AsyncStorage.getItem('token')
+            return token
+        } catch(e) {
+            alert('Internal database error, try in a moment')
+            console.log(e)
+        }
+    }
+
+    const getObjectStoraged = async () => {
+        try {
+            let userStoraged = await AsyncStorage.getItem('userLogged')
+            return JSON.parse(userStoraged)
+        } catch (e) {
+            alert('Internal database error, try in a moment')
+            console.log(e)
+        }
+    }
+
+    const getDataStoraged = async () => {
+        if(!props.userLogged && getTokenStoraged) {
+            try {
+                let userStoraged = await getObjectStoraged()
+                let token = await getTokenStoraged()
+                const userStorageObj = {
+                    token,
+                    ...userStoraged
+                }
+                if(userStoraged && token) {
+                    props.loginWithLS(userStorageObj)
+                }
+            } catch(e) {
+                alert('Internal database error, try in a moment')
+                console.log(e)
+            }
+        }
+    }
+
+    useEffect(() => {
+        getDataStoraged()
+    }, [])
+
     return(
         <>  
             <Drawer.Navigator
@@ -36,4 +82,14 @@ const MyDrawer = (props) => {
     )
 }
 
-export default MyDrawer;
+const mapStateToProps = state => {
+return {
+        userLogged: state.authReducer.userLogged
+    }
+}
+
+const mapDispatchToProps = {
+    loginWithLS: authActions.loginWithLS
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyDrawer);

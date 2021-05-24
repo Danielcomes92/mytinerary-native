@@ -1,4 +1,14 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
+
+const clearAll = async () => {
+    try {
+      await AsyncStorage.clear()
+    } catch(e) {
+        alert("Internal database error, try in a moment")
+    }
+}
+
 
 const authActions = {
     newUser: (newUser) => {
@@ -18,7 +28,7 @@ const authActions = {
                     alert("You've been registered!")
                 }
             } catch {
-                alert("new user Internal database error, try in a moment")
+                alert("Internal database error, try in a moment")
             }
         }
     },
@@ -28,8 +38,6 @@ const authActions = {
             try {
                 const response = await axios.post('https://webapp-mytinerary.herokuapp.com/api/login', logUser)          
                 if(response.data.success) {
-                    console.log('estoy en el dispatch log user')
-                    console.log(response.data.response)
                     dispatch({
                         type: 'ACCESS_USER',
                         payload: response.data.response
@@ -39,7 +47,7 @@ const authActions = {
                     alert(response.data.error)
                 }
             } catch {
-                alert("log user Internal database error, try in a moment")
+                alert("Internal database error, try in a moment")
             }
         }
     },
@@ -53,11 +61,13 @@ const authActions = {
     },
 
     loginWithLS: (userLS) => {
+        console.log(userLS.token)
         return async(dispatch, getState) => {
             try {
                 const response = await axios.get('https://webapp-mytinerary.herokuapp.com/api/loginLS', {
                     headers: {
-                        'Authorization': 'Bearer '+ userLS.token
+                        'Authorization': 'Bearer '+ userLS.token,
+                        'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 })
                 dispatch({
@@ -67,8 +77,9 @@ const authActions = {
                         token: userLS.token
                     }
                 })
-            } catch {
-                alert("Internal database error, try in a moment")
+            } catch (error) {
+                console.log(error)
+                // alert("Internal database error, try in a moment")
             }
         }
     }

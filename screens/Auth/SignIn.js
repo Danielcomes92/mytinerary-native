@@ -26,8 +26,6 @@ const SignIn = (props) => {
         })
     }
 
-    console.log(props.userLogged)
-
     const sendData = async () => {
         if(!Object.values(user).some(value => !value)) {
             const response = await props.logUser(user)

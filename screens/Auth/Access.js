@@ -38,7 +38,7 @@ const Access = (props) => {
 
 const mapStateToProps = state => {
     return {
-        
+        userLogged: state.authReducer.userLogged
     }
 }
 
@@ -103,5 +103,7 @@ const styles = StyleSheet.create({
     },
 
 })
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Access);
