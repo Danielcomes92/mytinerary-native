@@ -1,18 +1,23 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react'
-import { ImageBackground, StatusBar } from 'react-native'
+import { ImageBackground, StatusBar, TouchableWithoutFeedback } from 'react-native'
 import { View, StyleSheet, Text } from 'react-native'
 
 const Hero = () => {
+    const navigation = useNavigation();
     return (
         <>
-        <StatusBar barStyle="light-content" />
         <ImageBackground style={[styles.heroBg]} source={require('../../assets/bg-home-native.png')}>
             <View>
                 <View style={styles.heroTextContainer}>
                     <Text style={styles.title}>Find your</Text>
                     <Text style={styles.title}>Perfect Trip,</Text>
                     <Text>Designed by insiders, who know and love their cities</Text>
-                    <Text style={[styles.btn, styles.btnExplore]}>Explore</Text>
+                    <TouchableWithoutFeedback onPress={ () => navigation.navigate('cities')}>
+                        <Text style={[styles.btn, styles.btnExplore]} >
+                            Explore
+                        </Text>
+                    </TouchableWithoutFeedback >
                 </View>
             </View>
         </ImageBackground>

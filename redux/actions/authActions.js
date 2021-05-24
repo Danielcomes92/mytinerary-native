@@ -18,7 +18,7 @@ const authActions = {
                     alert("You've been registered!")
                 }
             } catch {
-                alert("Internal database error, try in a moment")
+                alert("new user Internal database error, try in a moment")
             }
         }
     },
@@ -26,19 +26,20 @@ const authActions = {
     logUser: (logUser) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post('https://webapp-mytinerary.herokuapp.com/api/login', logUser)
-               
+                const response = await axios.post('https://webapp-mytinerary.herokuapp.com/api/login', logUser)          
                 if(response.data.success) {
+                    console.log('estoy en el dispatch log user')
+                    console.log(response.data.response)
                     dispatch({
                         type: 'ACCESS_USER',
                         payload: response.data.response
-                    })                
+                    })              
                 } else {
                     //aca va a venir el error de pass o mail incorrect // o database error
                     alert(response.data.error)
                 }
             } catch {
-                alert("Internal database error, try in a moment")
+                alert("log user Internal database error, try in a moment")
             }
         }
     },

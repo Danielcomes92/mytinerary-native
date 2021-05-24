@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet, Image, Dimensions } from 'react-native'
+import { Text, View, StyleSheet, Image, Dimensions, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -24,11 +24,13 @@ const Access = (props) => {
                         <Text style={styles.text}>By proceeding, you agree to our Terms of Use and confirm you have read our Privacy and Cookie Statement.</Text>
                     </View>
                 </View>
-                <View style={styles.accessEmailBtn}>
-                    <Ionicons style={styles.iconMail} name="mail-outline" size={28} color="white" />
-                    <Text style={styles.textEmail} onPress={ () => navigation.navigate('signin')}>Continue with email</Text>
-                    <View></View>
-                </View>
+                <TouchableHighlight onPress={ () => navigation.navigate('signin')}>
+                    <View style={styles.accessEmailBtn}>
+                        <Ionicons style={styles.iconMail} name="mail-outline" size={28} color="white" />
+                        <Text style={styles.textEmail}>Continue with email</Text>
+                        <View></View>
+                    </View>
+                </TouchableHighlight>
             </View>
         </>
     )

@@ -1,13 +1,17 @@
 import React from 'react'
-import { View, StyleSheet, Text, ImageBackground } from 'react-native';
+import { useNavigation } from '@react-navigation/core';
+import { View, StyleSheet, Text, ImageBackground, TouchableWithoutFeedback } from 'react-native';
 
 const BecameMember = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={[styles.contentContainer, styles.textContainer]}>
                 <Text style={[styles.text, styles.title]}>Became a Member</Text>
                 <Text style={styles.text}>Connect with other travellers or share your experience with them and be part of our travel community!</Text>
-                <Text style={[styles.text, styles.btn]}>Register</Text>
+                <TouchableWithoutFeedback onPress={ () => navigation.navigate('access')}>
+                    <Text style={[styles.text, styles.btn]}>Register</Text>
+                </TouchableWithoutFeedback>
             </View>
             <View style={[styles.contentContainer, styles.imageContainer]}>
                 <ImageBackground style={styles.image} source={{

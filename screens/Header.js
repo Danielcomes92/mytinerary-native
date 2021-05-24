@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Text, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { connect } from 'react-redux';
 
 const Header = ({props}) => {
     return (
@@ -27,11 +28,21 @@ const styles = StyleSheet.create({
     },
     navbar: {
         width: '100%',
-        height: 65,
+        height: 45,
         backgroundColor: "#000115",
         justifyContent: 'flex-end',
         paddingBottom: 2
     }
 })
 
-export default Header;
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Text, View, StyleSheet, TextInput, Dimensions } from 'react-native'
+import { Text, View, StyleSheet, TextInput, Dimensions, TouchableHighlight } from 'react-native'
 import { connect } from 'react-redux';
 
 import Back from '../utilities/Back'
@@ -62,12 +62,16 @@ const SignIn = (props) => {
 
                 </View>
                 <View style={styles.btnContainer}>
-                    <View style={[styles.accessEmailBtn, styles.signIn]}>
-                        <Text style={[styles.textEmail, styles.textSignIn]} onPress={ sendData } >Sign in</Text>
-                    </View>
-                    <View style={styles.accessEmailBtn}>
-                        <Text style={styles.textEmail} onPress={ () => navigation.navigate('signup')}>Sign up</Text>
-                    </View>
+                    <TouchableHighlight onPress={ sendData }>
+                        <View style={[styles.accessEmailBtn, styles.signIn]}>
+                            <Text style={[styles.textEmail, styles.textSignIn]}>Sign in</Text>
+                        </View>
+                    </TouchableHighlight>
+                    <TouchableHighlight onPress={ () => navigation.navigate('signup')}>
+                        <View style={styles.accessEmailBtn}>
+                            <Text style={styles.textEmail}>Sign up</Text>
+                        </View>
+                    </TouchableHighlight>
                 </View>
             </View>
         </>
@@ -111,7 +115,7 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: '#cecece',
         marginVertical: 5,
-        padding: 10,
+        padding: 6,
         borderWidth: 2,
         borderColor: '#cecece',
         borderRadius: 4,

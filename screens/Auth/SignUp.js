@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import { Text, View, StyleSheet, TextInput, Dimensions, ScrollView, Alert, Modal, Pressable } from 'react-native'
+import { Text, View, StyleSheet, TextInput, Dimensions, ScrollView, Alert, Modal, Pressable, Platform, TouchableHighlight } from 'react-native'
 import {Picker} from '@react-native-picker/picker';
 import { connect } from 'react-redux';
 
@@ -41,11 +41,10 @@ const SignUp = (props) => {
 		})
 	}
 
-    console.log(newUser)
-
     const sendData = async () => {
 		if(!Object.values(newUser).some(value => value === '')) {
 			const response = await props.newUser(newUser)
+            console.log(response)
 
 			let fields = {
 				firstName: '',
@@ -56,7 +55,7 @@ const SignUp = (props) => {
 				password: ''
 			}
 
-            response ? setErrors({fields}) : setNewUser({fields})
+            response ? setErrors(fields) : setNewUser(fields)
 			
 			response && response.details.map(err => setErrors(prevState => {
 				return {...prevState, [err.context.label]: err.message}
@@ -77,6 +76,10 @@ const SignUp = (props) => {
         pickerRef.current.blur();
     }
 
+    // console.log(props.userLogged)
+    // console.log(newUser)
+    console.log(errors)
+
     return (
         <>  
             <Back navigateTo='signin' />
@@ -88,32 +91,34 @@ const SignUp = (props) => {
                         <View style={styles.flexInputsWidth50}>
                             <Text style={styles.text}>First name</Text>
                             <TextInput style={styles.input} placeholder="First name" onChangeText={ (e) => handleUserData('firstName', e) }></TextInput>
-                            <Text style={styles.errors}>Invalid password</Text>
+                            <Text style={styles.errors}>{errors.firstName !== '' && 'Invalid first name' }</Text>
                         </View>
                         <View style={styles.flexInputsWidth50}>
                             <Text style={styles.text}>Last name</Text>
                             <TextInput style={styles.input} placeholder="Last name" onChangeText={ (e) => handleUserData('lastName', e) }></TextInput>
-                            <Text style={styles.errors}>Invalid password</Text>
+                            <Text style={styles.errors}>{errors.lastName !== '' && 'Invalid last name' }</Text>
                         </View>
                     </View>
                     
                     <Text style={styles.text}>Email address</Text>
                     <TextInput style={styles.input} placeholder="Email address" onChangeText={ (e) => handleUserData('email', e) }></TextInput>
-                    <Text style={styles.errors}>Invalid password</Text>
+                    <Text style={styles.errors}>{errors.email !== '' && 'Invalid email' }</Text>
 
                     <Text style={styles.text}>Password</Text>
                     <TextInput style={styles.input} secureTextEntry={true} placeholder="Password" onChangeText={ (e) => handleUserData('password', e) } ></TextInput>
-                    <Text style={styles.errors}>Invalid password</Text>
+                    <Text style={styles.errors}>{errors.password !== '' && 'Invalid password' }</Text>
 
                     <View style={styles.flexInputsContainer}>
                         <View style={styles.flexInputsWidth50}>
                             <Text style={styles.text}>Url photo</Text>
                             <TextInput style={styles.input} placeholder="Url photo" onChangeText={ (e) => handleUserData('urlPic', e) }></TextInput>
-                            <Text style={styles.errors}>Invalid password</Text>
+                            <Text style={styles.errors}>{errors.urlPic !== '' && 'Invalid URL' }</Text>
                         </View>
                         <View style={styles.flexInputsWidth50}>
+                            
                             <View style={styles.centeredView}>
                                 <Modal
+                                    
                                     animationType="slide"
                                     transparent={true}
                                     visible={modalVisible}
@@ -122,28 +127,30 @@ const SignUp = (props) => {
                                     <View style={styles.centeredView}>
                                     <View style={styles.modalView}>
                                         <View style={styles.pickerContainer}>
-                                            <Text style={{fontSize: 18, fontWeight: 'bold'}}>Choose your country</Text>
+                                            <Text>Choose your country</Text>
                                             <Picker 
                                                     mode="dropdown"
+                                                    style={styles.picker} 
                                                     ref={pickerRef}
                                                     selectedValue={newUser.country}
+                                                    
                                                     onValueChange={itemValue => setNewUser({
                                                         ...newUser,
                                                         country: itemValue
                                                         })}>
                                                         {
                                                         countries.map((country, index) => {
-                                                                return <Picker.Item key={index} label={country} value={country} />
+                                                                return <Picker.Item style={styles.pickerItem} key={index} label={country} value={country} />
                                                         }) 
                                                         }
                                             </Picker>
                                         </View>
 
                                         <Pressable
-                                        style={[styles.input]}
+                                        style={[styles.btnConfirm]}
                                         onPress={() => setModalVisible(!modalVisible)}
                                         >
-                                        <Text style={styles.btnCountryClose}>Confirm</Text>
+                                        <Text style={styles.btnCountryConfirm}>Confirm</Text>
                                         </Pressable>
                                     </View>
                                     </View>
@@ -152,38 +159,21 @@ const SignUp = (props) => {
                                     style={styles.btnCountry}
                                     onPress={() => setModalVisible(true)}
                                 >
-                                    <Text style={styles.btnCountryText}>Select Country</Text>
+                                    <Text style={[styles.btnCountryText]}>{newUser.country === '' ? 'Choose Country' : newUser.country}</Text>
                                 </Pressable>
-                                </View> 
+                            </View> 
                             
                         </View>
-                        {/* <View style={styles.flexInputsWidth50}>
-                            <Text style={styles.text}>Country</Text>
-                            <Picker style={[styles.inputPicker, styles.picker]}
-                                mode='dropdown'
-                                ref={pickerRef}
-                                selectedValue={newUser.country}
-                                itemStyle={{height: 41, fontSize: 16, backgroundColor: '#cecece'}}
-                                onValueChange={itemValue => setNewUser({
-                                    ...newUser,
-                                    country: itemValue
-                                    })}>
-                                    <Picker.Item label="Choose one" value="" enabled={false} />
-                                    {
-                                       countries.map((country, index) => {
-                                            return <Picker.Item style={styles.pickerItem} key={index} label={country} value={country} />
-                                       }) 
-                                    }
-                            </Picker>
-                        </View> */}
                     </View>
 
                 </View>
-                <View style={styles.btnContainer}>
-                    <View style={[styles.accessEmailBtn, styles.signIn]}>
-                        <Text style={[styles.textEmail, styles.textSignIn]} onPress={ sendData }> Sign up</Text>
+                <TouchableHighlight onPress={ sendData }>
+                    <View style={styles.btnContainer}>
+                        <View style={[styles.accessEmailBtn, styles.signIn]}>
+                            <Text style={[styles.textEmail, styles.textSignIn]} > Sign up</Text>
+                        </View>
                     </View>
-                </View>
+                </TouchableHighlight>
             </ScrollView>
         </>
     )
@@ -202,25 +192,47 @@ const mapDispatchToProps = {
 }
 
 const styles = StyleSheet.create({
+    pickerContainer: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    picker: {
+        width: 160,
+        color:'black',
+        height: 20,
+        ...Platform.select({
+            ios: {
+                marginBottom: 100
+            },
+            android: {
+                marginBottom: 0,
+                marginTop: 10
+            }
+        })
+    },
     btnCountry: {
         backgroundColor: '#cecece',
-        marginVertical: 5,
-        padding: 10,
+        marginVertical: 4,
+        padding: 9,
         borderWidth: 2,
         borderColor: '#cecece',
         borderRadius: 4,
-        width: '100%'
+        width: '100%',
+        marginBottom: 3
     },
-    btnCountryClose: {
-        color: 'black'
+    btnCountryText: {
+        fontWeight: 'bold'
     },
-    picker: {
-        color: 'black',
-        width: '100%'
+    btnConfirm: {
+        backgroundColor: 'black',
+        padding: 10,
+        borderRadius: 4,
+        width: 90,
+        alignItems: 'center',
+        marginTop: 50
     },
-    pickerItem: {
-        color: 'black',
-        backgroundColor: 'red'
+    btnCountryConfirm: {
+        color: 'white'
     },
     flexInputsWidth50: {
         width: '49%'
@@ -230,15 +242,10 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'space-between'
     },
-    btnContainer: {
-        marginTop: 10
-    },
     mainContainer: {
         backgroundColor: '#000115',
-        minHeight: windowHeight,
         width: '100%',
-        padding: 20,
-        paddingTop: 0
+        padding: 20
     },
     errors: {
         color: '#FF603F',
@@ -257,7 +264,8 @@ const styles = StyleSheet.create({
     input: {
         backgroundColor: '#cecece',
         marginVertical: 5,
-        padding: 10,
+        padding: 6,
+        paddingLeft: 10,
         borderWidth: 2,
         borderColor: '#cecece',
         borderRadius: 4
@@ -295,9 +303,10 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     modalView: {
+        width: '65%',
         margin: 20,
         backgroundColor: "white",
-        borderRadius: 20,
+        borderRadius: 6,
         padding: 35,
         alignItems: "center",
         shadowColor: "#000",

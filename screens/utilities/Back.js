@@ -19,9 +19,9 @@ const Back = ({navigateTo}) => {
 const styles = StyleSheet.create({
     iconContainer: {
         width: '90%',
-        height: 75,
+        height: 60,
         paddingTop: 18,
-        marginVertical: 10,
+        marginTop: 10,
         padding: 6,
     },
     container: {
