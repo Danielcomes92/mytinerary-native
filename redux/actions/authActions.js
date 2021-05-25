@@ -19,7 +19,7 @@ const authActions = {
                 if(response.data.validatorErrors) {   
                     return response.data.validatorErrors //joi validator
                 } else if(!response.data.success) {
-                    toast.error(response.data.error, {position: toast.POSITION.TOP_RIGHT})
+                    alert(response.data.error)
                 } else {
                     dispatch({
                         type: 'ACCESS_USER',
@@ -61,13 +61,11 @@ const authActions = {
     },
 
     loginWithLS: (userLS) => {
-        console.log(userLS.token)
         return async(dispatch, getState) => {
             try {
                 const response = await axios.get('https://webapp-mytinerary.herokuapp.com/api/loginLS', {
                     headers: {
-                        'Authorization': 'Bearer '+ userLS.token,
-                        'Content-Type': 'application/x-www-form-urlencoded'
+                        'Authorization': 'Bearer '+ userLS.token
                     }
                 })
                 dispatch({
@@ -79,7 +77,7 @@ const authActions = {
                 })
             } catch (error) {
                 console.log(error)
-                // alert("Internal database error, try in a moment")
+                alert("Internal database error, try in a moment")
             }
         }
     }

@@ -4,15 +4,15 @@ const initialState = {
     userLogged: null
 }
 
-// const removeValue = async () => {
-//     try {
-//     await AsyncStorage.removeItem('userLogged')
-//     await AsyncStorage.removeItem('token')
-// } catch {
-//     alert('Internal database error, try in a moment')
-// }
-//     Alert('See you soon!')
-// }
+const removeValue = async () => {
+    try {
+    await AsyncStorage.removeItem('userLogged')
+    await AsyncStorage.removeItem('token')
+} catch {
+    alert('Internal database error, try in a moment')
+}
+    Alert('See you soon!')
+}
 
 const storeData = async (value) => {
     try {
@@ -27,7 +27,7 @@ const storeData = async (value) => {
 const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'ACCESS_USER':
-            storeData(action.payload)   
+            storeData(action.payload)
             return {
                 ...state,
                 userLogged: action.payload

@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 
-import { View, StyleSheet, Text, ImageBackground, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, ImageBackground, Dimensions, ScrollView } from 'react-native';
 import itinerariesActions from '../../redux/actions/itinerariesActions';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useNavigation } from '@react-navigation/native';
+import Itinerary from '../Itineraries/Itinerary';
 
 const windowHeight = Dimensions.get('window').height;
 
 const City = (props) => {
     const navigation = useNavigation();
     const [citySelected, setCitySelected] = useState({})
-    
+
     const filterCity = () => {
         setCitySelected(props.cities.find(city => city._id === props.route.params.id))
     }
@@ -34,29 +35,54 @@ const City = (props) => {
     }
 
     return (
-        <View style={styles.mainContainer}>
-            <View style={styles.upperContainer}>
-                <View>
-                    <Ionicons name="chevron-back" size={32} color="white" onPress={ () => navigation.navigate('cities')} />
+        <>
+            <ScrollView style={styles.mainContainer}>
+                <View style={styles.upperContainer}>
+                    <View>
+                        <Ionicons name="chevron-back" size={32} color="white" onPress={ () => navigation.navigate('cities')} />
+                    </View>
+                    <View style={styles.upperTitleContainer}>
+                        <Text style={styles.upperTitle}>{citySelected.country}</Text>
+                        <Text style={styles.text}>{citySelected.continent}</Text>
+                    </View>
+                    <View></View>
                 </View>
-                <View style={styles.upperTitleContainer}>
-                    <Text style={styles.upperTitle}>{citySelected.country}</Text>
-                    <Text style={styles.text}>{citySelected.continent}</Text>
+                <ImageBackground style={styles.image} source={{
+                    uri: `${citySelected.image}`
+                }}>
+                </ImageBackground>
+                <View style={styles.textBottomContainer}>
+                    <Text style={styles.titleBottom}>{citySelected.city}</Text>
+                    <Text style={styles.textBottom}>Tours & Experiences</Text>
                 </View>
-                <View></View>
-            </View>
-            <ImageBackground style={styles.image} source={{
-                uri: `${citySelected.image}`
-            }}>
-            </ImageBackground>
-            <View>
-                <Text style={styles.textImage}>{citySelected.city}</Text>
-            </View>
-        </View>
+                {
+                    props.cityItineraries.length > 0
+                    ? props.cityItineraries.map(city => {
+                        return <Itinerary key={city._id} city={city} />
+                    })
+                    : <View>
+                        <Text style={styles.text}>No itineraries is under construction</Text>
+                    </View>
+                }
+            </ScrollView>
+
+        </>
     )
 }
 
 const styles = StyleSheet.create({
+    textBottom: {
+        color: '#cccccc',
+        padding: 1
+    },
+    titleBottom: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 32
+    },
+    textContainer: {
+        paddingLeft: 12
+    },
     mainContainer: {
         minHeight: windowHeight,
         width: '100%',
@@ -79,11 +105,9 @@ const styles = StyleSheet.create({
         padding: 6,
         alignItems: 'center'
     },
-    textImage: {
-        color: 'white',
-        fontWeight: 'bold',
-        padding: 12,
-        fontSize: 34
+    textBottomContainer: {
+        paddingLeft: 4,
+        marginTop: 12
     },
     upperTitle: {
         color: '#fefefe',
