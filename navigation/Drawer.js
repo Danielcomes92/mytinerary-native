@@ -72,10 +72,12 @@ const MyDrawer = (props) => {
                     title: 'Cities'
                 }} />
 
-                <Drawer.Screen name='access' component={ AuthStack } options={{
-                    drawerIcon: () => ( <Ionicons name="key" size={24} color={'#000100'}/> ),
-                    title: 'Access'
-                }}/>
+                {
+                    !props.userLogged && <Drawer.Screen name='access' component={ AuthStack } options={{
+                        drawerIcon: () => ( <Ionicons name="key" size={24} color={'#000100'}/> ),
+                        title: 'Access'
+                    }}/>
+                }
                 
             </Drawer.Navigator>
         </>

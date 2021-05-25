@@ -1,17 +1,22 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/core';
 import { View, StyleSheet, Text, ImageBackground, TouchableWithoutFeedback } from 'react-native';
+import { connect } from 'react-redux';
 
-const BecameMember = () => {
+const BecameMember = (props) => {
     const navigation = useNavigation();
+
+    const goTo = props.userLogged ? 'cities' : 'access'
     return (
         <View style={styles.container}>
             <View style={[styles.contentContainer, styles.textContainer]}>
-                <Text style={[styles.text, styles.title]}>Became a Member</Text>
-                <Text style={styles.text}>Connect with other travellers or share your experience with them and be part of our travel community!</Text>
-                <TouchableWithoutFeedback onPress={ () => navigation.navigate('access')}>
-                    <Text style={[styles.text, styles.btn]}>Register</Text>
+                
+                <Text style={[styles.text, styles.title]}>{props.userLogged ? 'Member registered' : 'Became a Member'}</Text>
+                <Text style={styles.text}>{ props.userLogged ? 'As a member registered, you can share your experiences with other members of our community, lets go to cities and find out the latest news!' : 'Connect with other travellers or share your experience with them and be part of our travel community!'}</Text>
+                <TouchableWithoutFeedback onPress={ () => navigation.navigate(goTo)}>
+                    <Text style={[styles.text, styles.btn]}>{props.userLogged ? 'Cities' : 'Register'}</Text>
                 </TouchableWithoutFeedback>
+
             </View>
             <View style={[styles.contentContainer, styles.imageContainer]}>
                 <ImageBackground style={styles.image} source={{
@@ -77,4 +82,9 @@ const styles = StyleSheet.create({
     }
 })
 
-export default BecameMember;
+const mapStateToProps = state => {
+    return {
+        userLogged: state.authReducer.userLogged
+    }
+}
+export default connect(mapStateToProps)(BecameMember);

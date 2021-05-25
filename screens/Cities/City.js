@@ -36,7 +36,7 @@ const City = (props) => {
 
     return (
         <>
-            <ScrollView style={styles.mainContainer}>
+            <ScrollView style={styles.mainContainer} keyboardShouldPersistTaps={'handled'}>
                 <View style={styles.upperContainer}>
                     <View>
                         <Ionicons name="chevron-back" size={32} color="white" onPress={ () => navigation.navigate('cities')} />

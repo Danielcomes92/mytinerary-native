@@ -1,24 +1,32 @@
 import React from 'react'
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { View, StyleSheet, ImageBackground, Text, Image, TouchableWithoutFeedback } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 
-const Header = ({props}) => {
+import authActions from '../redux/actions/authActions'
 
+const Header = (props) => {
+    console.log(props.userLogged)
     return (
         <View style={styles.navbar}>
             <View style={styles.innerNavbar}>
                 <View>
-                    <Ionicons name="menu-outline" size={35} color="white" onPress={ () => props.navigation.openDrawer() } />
+                    <Ionicons name="menu-outline" size={35} color="white" onPress={ () => props.props.navigation.openDrawer() } />
                 </View>
-                <View>
+                <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     {
                         props.userLogged
-                        ? <View>
-                            <ImageBackground style={styles.userImage} source={{
-                                uri: props.userLogged.urlPic
-                            }} />
-                        </View>
+                        ? 
+                        <>
+                        <TouchableWithoutFeedback onPress={() => props.logOut()}>
+                            <Text style={{color: 'white', marginRight: 8}}>Logout</Text>
+                        </TouchableWithoutFeedback>
+                        
+                        <Image style={styles.userImage} source={{
+                            uri: props.userLogged.urlPic
+                        }} />
+
+                        </>
                         : <Ionicons name="person-circle-outline" size={35} color="white" />
                     }
                 </View>
@@ -57,7 +65,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-
+    logOut: authActions.logOut
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -6,12 +6,11 @@ const initialState = {
 
 const removeValue = async () => {
     try {
-    await AsyncStorage.removeItem('userLogged')
-    await AsyncStorage.removeItem('token')
-} catch {
-    alert('Internal database error, try in a moment')
-}
-    Alert('See you soon!')
+        await AsyncStorage.removeItem('userLogged')
+        await AsyncStorage.removeItem('token')
+    } catch {
+        alert('Internal database error, try in a moment')
+    }
 }
 
 const storeData = async (value) => {

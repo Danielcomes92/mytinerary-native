@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Image, ImageBackground, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
+import { Image, ImageBackground, ScrollView, StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Ionicons } from '@expo/vector-icons';
@@ -64,7 +64,7 @@ const Itinerary = (props) => {
     }
 
     return (
-        <View style={styles.mainContainer}>
+        <ScrollView style={styles.mainContainer}>
             <View style={styles.topContainer}>
                 <Text style={styles.title}>{title}</Text>
                 <View style={styles.likesContainer}>
@@ -109,7 +109,7 @@ const Itinerary = (props) => {
             <View style={styles.btnContainer}>
                 <TouchableHighlight onPress={() => handleActivities()}><Text style={styles.btnViewMore}>{collapse ? 'View more' : 'View less'}</Text></TouchableHighlight>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -120,7 +120,8 @@ const styles = StyleSheet.create({
     btnViewMore: {
         backgroundColor: 'white',
         color: 'black',
-        width: 80,
+        width: 100,
+        overflow: 'hidden',
         textAlign: 'center',
         borderRadius: 4,
         marginTop: 20,

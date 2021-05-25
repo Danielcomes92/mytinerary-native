@@ -99,15 +99,15 @@ const SignUp = (props) => {
                     <TextInput style={styles.input} placeholder="Email address" onChangeText={ (e) => handleUserData('email', e) }></TextInput>
                     <Text style={styles.errors}>{errors.email !== '' && 'Invalid email' }</Text>
 
-                    <Text style={styles.text}>Password</Text>
-                    <TextInput style={styles.input} secureTextEntry={true} placeholder="Password" onChangeText={ (e) => handleUserData('password', e) } ></TextInput>
-                    <Text style={styles.errors}>{errors.password !== '' && 'Invalid password' }</Text>
+                    <Text style={styles.text}>Url photo</Text>
+                    <TextInput style={styles.input} placeholder="Url photo" onChangeText={ (e) => handleUserData('urlPic', e) }></TextInput>
+                    <Text style={styles.errors}>{errors.urlPic !== '' && 'Invalid URL' }</Text>
 
                     <View style={styles.flexInputsContainer}>
                         <View style={styles.flexInputsWidth50}>
-                            <Text style={styles.text}>Url photo</Text>
-                            <TextInput style={styles.input} placeholder="Url photo" onChangeText={ (e) => handleUserData('urlPic', e) }></TextInput>
-                            <Text style={styles.errors}>{errors.urlPic !== '' && 'Invalid URL' }</Text>
+                            <Text style={styles.text}>Password</Text>
+                            <TextInput style={styles.input} secureTextEntry={true} placeholder="Password" onChangeText={ (e) => handleUserData('password', e) } ></TextInput>
+                            <Text style={styles.errors}>{errors.password !== '' && 'Invalid password' }</Text>
                         </View>
                         <View style={styles.flexInputsWidth50}>
                             
