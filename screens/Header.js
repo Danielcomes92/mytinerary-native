@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import authActions from '../redux/actions/authActions'
 
 const Header = (props) => {
-    console.log(props.userLogged)
     return (
         <View style={styles.navbar}>
             <View style={styles.innerNavbar}>

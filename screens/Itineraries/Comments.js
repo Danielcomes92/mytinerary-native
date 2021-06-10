@@ -16,7 +16,6 @@ const Comments = (props) => {
     const [comments, setComments] = useState(props.comments)
 
     const handleMessage = (text) => {
-        console.log(text)
         setMessage({
             message: text
         })
@@ -94,7 +93,7 @@ const styles = StyleSheet.create({
     inputContainer:{
         flex: 8,
         backgroundColor: '#cccccc',
-        padding: 3,
+        padding: 6,
         borderRadius: 2
     },
     inputChatContainer: {

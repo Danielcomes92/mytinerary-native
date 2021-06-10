@@ -55,7 +55,8 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        color: '#cecece'
+        color: '#cecece',
+        marginLeft: 1
     },
     footerCard: {
         flexDirection: 'row',

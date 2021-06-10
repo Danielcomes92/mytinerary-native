@@ -56,7 +56,6 @@ const SignIn = (props) => {
 
                     <Text style={styles.text}>Password</Text>
                     <TextInput style={styles.input} secureTextEntry={true} placeholder="Password" value={password} onChangeText={ (e) => saveUser('password', e) } ></TextInput>
-                    {/* <Text style={styles.errors}>Invalid password</Text> */}
 
                 </View>
                 <View style={styles.btnContainer}>

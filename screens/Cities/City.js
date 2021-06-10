@@ -60,8 +60,8 @@ const City = (props) => {
                     ? props.cityItineraries.map(city => {
                         return <Itinerary key={city._id} city={city} />
                     })
-                    : <View>
-                        <Text style={styles.text}>No itineraries is under construction</Text>
+                    : <View style={{justifyContent: 'center', alignContent: 'center', padding: 50}}>
+                        <Text style={styles.text}>No itineraries available in this city yet!</Text>
                     </View>
                 }
             </ScrollView>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         padding: 1
     },
     titleBottom: {
-        color: 'white',
+        color: '#05E3F0',
         fontWeight: 'bold',
         fontSize: 32
     },

@@ -13,7 +13,7 @@ const Hero = () => {
                     <Text style={styles.title}>Find your</Text>
                     <Text style={styles.title}>Perfect Trip,</Text>
                     <Text>Designed by insiders, who know and love their cities</Text>
-                    <TouchableWithoutFeedback onPress={ () => navigation.navigate('cities')}>
+                    <TouchableWithoutFeedback onPress={ () => navigation.navigate('cities') }>
                         <Text style={[styles.btn, styles.btnExplore]} >
                             Explore
                         </Text>
@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
         color: 'white',
         width: 100,
         textAlign: 'center',
-        borderRadius: 4,
+        borderRadius: 2,
+        overflow: 'hidden',
         marginTop: 20
     },
     btn: { 

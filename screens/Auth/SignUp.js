@@ -208,7 +208,8 @@ const styles = StyleSheet.create({
     btnCountry: {
         backgroundColor: '#cecece',
         marginVertical: 4,
-        padding: 9,
+        padding: 6,
+        marginTop: 6,
         borderWidth: 2,
         borderColor: '#cecece',
         borderRadius: 4,

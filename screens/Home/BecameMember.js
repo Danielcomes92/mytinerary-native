@@ -11,7 +11,7 @@ const BecameMember = (props) => {
         <View style={styles.container}>
             <View style={[styles.contentContainer, styles.textContainer]}>
                 
-                <Text style={[styles.text, styles.title]}>{props.userLogged ? 'Member registered' : 'Became a Member'}</Text>
+                <Text style={[styles.text, styles.title]}>{props.userLogged ? 'Member registered' : 'Become a Member'}</Text>
                 <Text style={styles.text}>{ props.userLogged ? 'As a member registered, you can share your experiences with other members of our community, lets go to cities and find out the latest news!' : 'Connect with other travellers or share your experience with them and be part of our travel community!'}</Text>
                 <TouchableWithoutFeedback onPress={ () => navigation.navigate(goTo)}>
                     <Text style={[styles.text, styles.btn]}>{props.userLogged ? 'Cities' : 'Register'}</Text>
@@ -68,11 +68,12 @@ const styles = StyleSheet.create({
         padding: 10,
         textAlign: 'center',
         textAlignVertical: 'center',
-        borderRadius: 4,
+        borderRadius: 2,
         marginTop: 20,
         backgroundColor: 'black',
         color: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        overflow: 'hidden'
     },
     text: {
         color: 'black',
